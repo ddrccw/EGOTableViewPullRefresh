@@ -22,7 +22,7 @@
 		3A2585561088E97000126784 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2585531088E97000126784 /* blueArrow.png */; };
 		3A2585571088E97000126784 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A2585541088E97000126784 /* whiteArrow.png */; };
 		3A3D908E11187FE7002B6585 /* TableViewPullAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D908D11187FE7002B6585 /* TableViewPullAppDelegate.m */; };
-		3A3D909E11188064002B6585 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D909D11188064002B6585 /* EGORefreshTableHeaderView.m */; };
+		3A3D909E11188064002B6585 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D909D11188064002B6585 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		3A3D90A8111881DE002B6585 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D90A7111881DE002B6585 /* RootViewController.m */; };
 		3A3D910311188495002B6585 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D910211188495002B6585 /* main.m */; };
 /* End PBXBuildFile section */
@@ -205,6 +205,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TableViewPull" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
@@ -270,7 +272,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TableViewPull_Prefix.pch;
 				INFOPLIST_FILE = "Resources/TableViewPull-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TableViewPull;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -284,7 +286,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TableViewPull_Prefix.pch;
 				INFOPLIST_FILE = "Resources/TableViewPull-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = TableViewPull;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F869442A-C386-4304-90FE-5BB7A468885B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TableViewPull</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>682D186E-EF93-40BE-A9E5-FCA864207591</key>
+		<string>ssh://github.com/ddrccw/EGOTableViewPullRefresh.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Demo/TableViewPull/TableViewPull.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>682D186E-EF93-40BE-A9E5-FCA864207591</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/ddrccw/EGOTableViewPullRefresh.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>682D186E-EF93-40BE-A9E5-FCA864207591</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>682D186E-EF93-40BE-A9E5-FCA864207591</string>
+			<key>IDESourceControlWCCName</key>
+			<string>EGOTableViewPullRefresh</string>
+		</dict>
+	</array>
+</dict>
+</plist>
