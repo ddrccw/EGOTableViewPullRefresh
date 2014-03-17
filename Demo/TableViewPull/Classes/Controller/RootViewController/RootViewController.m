@@ -25,6 +25,7 @@
 //
 
 #import "RootViewController.h"
+#import "CCCircleSpinLayer.h"
 
 @implementation RootViewController
 
@@ -32,8 +33,13 @@
     [super viewDidLoad];
 	
 	if (_refreshHeaderView == nil) {
-		
-		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)];
+		CCCircleSpinLayer<EGOSpinnerLayerDelegate> *sp = (CCCircleSpinLayer<EGOSpinnerLayerDelegate> *)[[CCCircleSpinLayer alloc] initWithSize:CGSizeMake(30, 30)
+                                                                   color:[UIColor greenColor]
+                                                                animated:NO];
+        sp.backgroundColor = [UIColor clearColor].CGColor;
+		EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height,
+                                                                                                      self.view.frame.size.width, self.tableView.bounds.size.height)
+                                           spinnerLayer:sp];
 		view.delegate = self;
 		[self.tableView addSubview:view];
 		_refreshHeaderView = view;

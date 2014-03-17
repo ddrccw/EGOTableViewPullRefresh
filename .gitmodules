@@ -1,0 +1,3 @@
+[submodule "CCCircleSpinLayer"]
+	path = CCCircleSpinLayer
+	url = git@github.com:ddrccw/CCCircleSpinLayer.git

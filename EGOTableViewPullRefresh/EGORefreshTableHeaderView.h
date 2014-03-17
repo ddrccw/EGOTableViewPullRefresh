@@ -34,6 +34,12 @@ typedef enum{
 } EGOPullRefreshState;
 
 @protocol EGORefreshTableHeaderDelegate;
+@protocol EGOSpinnerLayerDelegate <NSObject>
+- (void)showInProgress:(CGFloat)progress;
+- (void)startAnimating;
+- (void)stopAnimating;
+@end
+
 @interface EGORefreshTableHeaderView : UIView {
 	
 	EGOPullRefreshState _state;
@@ -43,11 +49,11 @@ typedef enum{
 	CALayer *_arrowImage;
 	UIActivityIndicatorView *_activityView;
 	
-
 }
 
-@property(nonatomic, weak) id <EGORefreshTableHeaderDelegate> delegate;
+@property (nonatomic, weak) id <EGORefreshTableHeaderDelegate> delegate;
 
+- (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer;
 - (void)refreshLastUpdatedDate;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;

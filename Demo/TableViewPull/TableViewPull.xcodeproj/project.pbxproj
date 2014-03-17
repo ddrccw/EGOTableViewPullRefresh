@@ -18,6 +18,7 @@
 		3A3D910311188495002B6585 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D910211188495002B6585 /* main.m */; };
 		CE013A3818D2FC2D00929705 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE013A3618D2FC2D00929705 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		CE013A3918D2FC2D00929705 /* EGOTableViewPullRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE013A3718D2FC2D00929705 /* EGOTableViewPullRefresh.bundle */; };
+		CE013A3D18D300C000929705 /* CCCircleSpinLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE013A3C18D300C000929705 /* CCCircleSpinLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		CE013A3518D2FC2D00929705 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		CE013A3618D2FC2D00929705 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		CE013A3718D2FC2D00929705 /* EGOTableViewPullRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EGOTableViewPullRefresh.bundle; sourceTree = "<group>"; };
+		CE013A3B18D300C000929705 /* CCCircleSpinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCircleSpinLayer.h; sourceTree = "<group>"; };
+		CE013A3C18D300C000929705 /* CCCircleSpinLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCircleSpinLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				CE013A3A18D300C000929705 /* CCCircleSpinLayer */,
 				CE013A3418D2FC2D00929705 /* EGOTableViewPullRefresh */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -152,6 +156,16 @@
 			path = ../../EGOTableViewPullRefresh;
 			sourceTree = "<group>";
 		};
+		CE013A3A18D300C000929705 /* CCCircleSpinLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CE013A3B18D300C000929705 /* CCCircleSpinLayer.h */,
+				CE013A3C18D300C000929705 /* CCCircleSpinLayer.m */,
+			);
+			name = CCCircleSpinLayer;
+			path = ../../CCCircleSpinLayer/CCCircleSpinLayer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -218,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE013A3D18D300C000929705 /* CCCircleSpinLayer.m in Sources */,
 				CE013A3818D2FC2D00929705 /* EGORefreshTableHeaderView.m in Sources */,
 				3A3D908E11187FE7002B6585 /* TableViewPullAppDelegate.m in Sources */,
 				3A3D90A8111881DE002B6585 /* RootViewController.m in Sources */,

@@ -12,6 +12,8 @@
 	<dict>
 		<key>682D186E-EF93-40BE-A9E5-FCA864207591</key>
 		<string>ssh://github.com/ddrccw/EGOTableViewPullRefresh.git</string>
+		<key>6C7CD8B7-D5D5-4E16-851F-45B90D25F9BB</key>
+		<string>ssh://github.com/ddrccw/CCCircleSpinLayer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Demo/TableViewPull/TableViewPull.xcodeproj/project.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>682D186E-EF93-40BE-A9E5-FCA864207591</key>
 		<string>../../../..</string>
+		<key>6C7CD8B7-D5D5-4E16-851F-45B90D25F9BB</key>
+		<string>../../../../CCCircleSpinLayer</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/ddrccw/EGOTableViewPullRefresh.git</string>
@@ -28,6 +32,14 @@
 	<string>682D186E-EF93-40BE-A9E5-FCA864207591</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6C7CD8B7-D5D5-4E16-851F-45B90D25F9BB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CCCircleSpinLayer</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
