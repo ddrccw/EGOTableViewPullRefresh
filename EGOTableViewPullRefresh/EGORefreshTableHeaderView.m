@@ -120,6 +120,20 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
     }
 }
 
+- (void)triggerLoadingInScrollView:(UIScrollView *)scrollView {
+    [self setState:EGOOPullRefreshLoading];
+    [scrollView setContentOffset:CGPointMake(0, -65) animated:YES];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2];
+    scrollView.contentInset = UIEdgeInsetsMake(65.0f, 0.0f, 0.0f, 0.0f);
+    [UIView commitAnimations];
+    
+    if (self.spinnerLayer) {
+        [self.spinnerLayer startAnimating];
+        self.lastContentOffsetY = 0;
+    }
+}
+
 #pragma mark -
 #pragma mark Setters
 
@@ -214,7 +228,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
 		offset = MIN(offset, 65);
 		scrollView.contentInset = UIEdgeInsetsMake(offset, 0.0f, 0.0f, 0.0f);
-		
+
 	} else if (scrollView.isDragging) {
 		
 		BOOL _loading = NO;
