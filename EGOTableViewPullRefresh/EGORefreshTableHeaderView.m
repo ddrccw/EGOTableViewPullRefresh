@@ -29,6 +29,14 @@
 
 #define TEXT_COLOR	 [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
 #define FLIP_ANIMATION_DURATION 0.18f
+
+#define EGOLocalizedString(key, comment) \
+        [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"EGORefreshTableHeaderView"   \
+                                                         ofType:@"bundle"]] localizedStringForKey:(key) \
+                                                                                            value:@""    \
+                                                                                            table:nil]
+
+
 static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 @interface EGORefreshTableHeaderView ()
@@ -146,7 +154,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 		[formatter setAMSymbol:@"AM"];
 		[formatter setPMSymbol:@"PM"];
 		[formatter setDateFormat:@"MM/dd/yyyy hh:mm:a"];
-        _lastUpdatedLabel.text = [NSString stringWithFormat:NSLocalizedString(@"egoPullRefreshViewLastUpdateTime", @"Last Updated"), [formatter stringFromDate:date]];
+        _lastUpdatedLabel.text = [NSString stringWithFormat:EGOLocalizedString(@"egoPullRefreshViewLastUpdateTime", @"Last Updated"), [formatter stringFromDate:date]];
 		[[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 		
@@ -163,7 +171,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 	switch (aState) {
 		case EGOOPullRefreshPulling:
 			
-			_statusLabel.text = NSLocalizedString(@"egoPullRefreshViewReleaseToRefresh", @"Release to refresh status");
+			_statusLabel.text = EGOLocalizedString(@"egoPullRefreshViewReleaseToRefresh", @"Release to refresh status");
             
             if (!self.spinnerLayer) {
                 [CATransaction begin];
@@ -184,7 +192,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
                 }
 			}
 			
-			_statusLabel.text = NSLocalizedString(@"egoPullRefreshViewPullToRefresh", @"Pull down to refresh status");
+			_statusLabel.text = EGOLocalizedString(@"egoPullRefreshViewPullToRefresh", @"Pull down to refresh status");
             
             if (!self.spinnerLayer) {
                 [_activityView stopAnimating];
@@ -200,7 +208,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 			break;
 		case EGOOPullRefreshLoading:
 			
-			_statusLabel.text = NSLocalizedString(@"egoPullRefreshViewLoading", @"Loading Status");
+			_statusLabel.text = EGOLocalizedString(@"egoPullRefreshViewLoading", @"Loading Status");
             
             if (!self.spinnerLayer) {
                 [_activityView startAnimating];
