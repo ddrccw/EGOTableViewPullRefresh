@@ -31,7 +31,7 @@
 #define FLIP_ANIMATION_DURATION 0.18f
 
 #define EGOLocalizedString(key, comment) \
-        [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"EGORefreshTableHeaderView"   \
+        [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"EGOTableViewPullRefresh"   \
                                                          ofType:@"bundle"]] localizedStringForKey:(key) \
                                                                                             value:@""    \
                                                                                             table:nil]
