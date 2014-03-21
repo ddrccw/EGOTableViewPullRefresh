@@ -31,10 +31,10 @@
 #define FLIP_ANIMATION_DURATION 0.18f
 
 #define EGOLocalizedString(key, comment) \
-        [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"EGOTableViewPullRefresh"   \
-                                                         ofType:@"bundle"]] localizedStringForKey:(key) \
-                                                                                            value:@""    \
-                                                                                            table:nil]
+[[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"EGOTableViewPullRefresh"   \
+ofType:@"bundle"]] localizedStringForKey:(key) \
+value:@""    \
+table:nil]
 
 
 static const float kOffsetYWhenSpinnerStartingShowing = 30;
@@ -53,7 +53,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
         
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		label.font = [UIFont systemFontOfSize:12.0f];
 		label.textColor = TEXT_COLOR;
@@ -64,7 +64,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 		[self addSubview:label];
 		_lastUpdatedLabel=label;
 		
-		label = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
+		label = [[UILabel alloc] initWithFrame:CGRectZero];
 		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		label.font = [UIFont boldSystemFontOfSize:13.0f];
 		label.textColor = TEXT_COLOR;
@@ -77,7 +77,6 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 		
         if (!spinnerLayer) {
             CALayer *layer = [CALayer layer];
-            layer.frame = CGRectMake(25.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
             layer.contentsGravity = kCAGravityResizeAspect;
             layer.contents = (id)[UIImage imageNamed:@"blueArrow.png"].CGImage;
             
@@ -96,8 +95,6 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
         }
         else {
             _spinnerLayer = spinnerLayer;
-            _spinnerLayer.frame = CGRectMake(25.0f, frame.size.height - _spinnerLayer.bounds.size.height - 15,
-                                             _spinnerLayer.bounds.size.width, _spinnerLayer.bounds.size.height);
             [self.layer addSublayer:_spinnerLayer];
         }
 		
@@ -113,10 +110,10 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    [self relayoutArrowAndAcitivityView];
+    [self relayout];
 }
 
-- (void)relayoutArrowAndAcitivityView {
+- (void)relayout {
     float layerOffsetX = self.center.x - 140;
     if (!self.spinnerLayer) {
         _arrowImage.frame = CGRectMake(layerOffsetX, self.frame.size.height - 65.0f, 30.0f, 55.0f);
@@ -126,6 +123,8 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
         self.spinnerLayer.frame = CGRectMake(layerOffsetX, self.frame.size.height - _spinnerLayer.bounds.size.height - 15,
                                              _spinnerLayer.bounds.size.width, _spinnerLayer.bounds.size.height);
     }
+    _lastUpdatedLabel.frame = CGRectMake(0.0f, self.frame.size.height - 30.0f, self.frame.size.width, 20.0f);
+    _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, self.frame.size.width, 20.0f);
 }
 
 - (void)triggerLoadingInScrollView:(UIScrollView *)scrollView {
@@ -163,7 +162,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 		_lastUpdatedLabel.text = nil;
 		
 	}
-
+    
 }
 
 - (void)setState:(EGOPullRefreshState)aState{
@@ -236,7 +235,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
 		offset = MIN(offset, 65);
 		scrollView.contentInset = UIEdgeInsetsMake(offset, 0.0f, 0.0f, 0.0f);
-
+        
 	} else if (scrollView.isDragging) {
 		
 		BOOL _loading = NO;
@@ -261,7 +260,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
                         [self.spinnerLayer showInProgress:((scrollView.contentOffset.y + kOffsetYWhenSpinnerStartingShowing) / (65.0 - kOffsetYWhenSpinnerStartingShowing))];
                     }
                     self.lastContentOffsetY = scrollView.contentOffset.y;
-
+                    
                 }
                 else {
                     self.lastContentOffsetY = 0;
@@ -303,7 +302,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 	
 }
 
-- (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {	
+- (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
 	
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
@@ -315,8 +314,8 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
     if (self.spinnerLayer) {
         [self.spinnerLayer stopAnimating];
     }
-
-
+    
+    
 }
 
 
