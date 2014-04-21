@@ -48,33 +48,39 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 @implementation EGORefreshTableHeaderView
 
-- (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer {
+- (instancetype)initWithFrame:(CGRect)frame
+                 spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer
+         showLastUpdatedLabel:(BOOL)showLastUpdatedLabel
+{
     if (self = [super initWithFrame:frame]) {
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
         
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont systemFontOfSize:12.0f];
-		label.textColor = TEXT_COLOR;
-		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		label.backgroundColor = [UIColor clearColor];
-		label.textAlignment = NSTextAlignmentCenter;
-		[self addSubview:label];
-		_lastUpdatedLabel=label;
+        UILabel *label = nil;
+        if (showLastUpdatedLabel) {
+            label = [[UILabel alloc] initWithFrame:CGRectZero];
+            label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            label.font = [UIFont systemFontOfSize:12.0f];
+            label.textColor = TEXT_COLOR;
+            label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+            label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+            label.backgroundColor = [UIColor clearColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            [self addSubview:label];
+            _lastUpdatedLabel=label;
+        }
 		
-		label = [[UILabel alloc] initWithFrame:CGRectZero];
-		label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-		label.font = [UIFont boldSystemFontOfSize:13.0f];
-		label.textColor = TEXT_COLOR;
-		label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-		label.shadowOffset = CGSizeMake(0.0f, 1.0f);
-		label.backgroundColor = [UIColor clearColor];
-		label.textAlignment = NSTextAlignmentCenter;
-		[self addSubview:label];
-		_statusLabel=label;
-		
+        label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        label.font = [UIFont boldSystemFontOfSize:13.0f];
+        label.textColor = TEXT_COLOR;
+        label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
+        label.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:label];
+        _statusLabel=label;
+        
         if (!spinnerLayer) {
             CALayer *layer = [CALayer layer];
             layer.contentsGravity = kCAGravityResizeAspect;
@@ -104,6 +110,12 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
     return self;
 }
 
+- (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer {
+    if (self = [self initWithFrame:frame spinnerLayer:spinnerLayer showLastUpdatedLabel:YES]) {
+    }
+    return self;
+}
+
 - (id)initWithFrame:(CGRect)frame {
     return [self initWithFrame:frame spinnerLayer:nil];
 }
@@ -120,11 +132,20 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
         _activityView.frame = CGRectMake(layerOffsetX, self.frame.size.height - 38.0f, 20.0f, 20.0f);
     }
     else {
+        if (!_lastUpdatedLabel) {
+            layerOffsetX = self.center.x - 80;
+        }
         self.spinnerLayer.frame = CGRectMake(layerOffsetX, self.frame.size.height - _spinnerLayer.bounds.size.height - 15,
                                              _spinnerLayer.bounds.size.width, _spinnerLayer.bounds.size.height);
     }
-    _lastUpdatedLabel.frame = CGRectMake(0.0f, self.frame.size.height - 30.0f, self.frame.size.width, 20.0f);
-    _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, self.frame.size.width, 20.0f);
+    
+    if (_lastUpdatedLabel) {
+        _lastUpdatedLabel.frame = CGRectMake(0.0f, self.frame.size.height - 30.0f, self.frame.size.width, 20.0f);
+        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, self.frame.size.width, 20.0f);
+    }
+    else {
+        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, self.frame.size.width, 35.0f);
+    }
 }
 
 - (void)triggerLoadingInScrollView:(UIScrollView *)scrollView {
@@ -145,24 +166,25 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 #pragma mark Setters
 
 - (void)refreshLastUpdatedDate {
-	if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceLastUpdated:)]) {
-		
-		NSDate *date = [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
-		
-		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-		[formatter setAMSymbol:@"AM"];
-		[formatter setPMSymbol:@"PM"];
-		[formatter setDateFormat:@"MM/dd/yyyy hh:mm:a"];
-        _lastUpdatedLabel.text = [NSString stringWithFormat:EGOLocalizedString(@"egoPullRefreshViewLastUpdateTime", @"Last Updated"), [formatter stringFromDate:date]];
-		[[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
-		[[NSUserDefaults standardUserDefaults] synchronize];
-		
-	} else {
-		
-		_lastUpdatedLabel.text = nil;
-		
-	}
-    
+    if (_lastUpdatedLabel) {
+        if ([_delegate respondsToSelector:@selector(egoRefreshTableHeaderDataSourceLastUpdated:)]) {
+            
+            NSDate *date = [_delegate egoRefreshTableHeaderDataSourceLastUpdated:self];
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setAMSymbol:@"AM"];
+            [formatter setPMSymbol:@"PM"];
+            [formatter setDateFormat:@"MM/dd/yyyy hh:mm:a"];
+            _lastUpdatedLabel.text = [NSString stringWithFormat:EGOLocalizedString(@"egoPullRefreshViewLastUpdateTime", @"Last Updated"), [formatter stringFromDate:date]];
+            [[NSUserDefaults standardUserDefaults] setObject:_lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+        } else {
+            
+            _lastUpdatedLabel.text = nil;
+            
+        }
+    }
 }
 
 - (void)setState:(EGOPullRefreshState)aState{
@@ -327,3 +349,4 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 
 @end
+

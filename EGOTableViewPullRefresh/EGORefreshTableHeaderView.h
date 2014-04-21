@@ -30,7 +30,7 @@
 typedef enum{
 	EGOOPullRefreshPulling = 0,
 	EGOOPullRefreshNormal,
-	EGOOPullRefreshLoading,	
+	EGOOPullRefreshLoading
 } EGOPullRefreshState;
 
 @protocol EGORefreshTableHeaderDelegate;
@@ -52,6 +52,7 @@ typedef enum{
 
 @property (nonatomic, weak) id <EGORefreshTableHeaderDelegate> delegate;
 
+- (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer showLastUpdatedLabel:(BOOL)showLastUpdatedLabel;
 - (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer;
 - (void)refreshLastUpdatedDate;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
@@ -65,3 +66,4 @@ typedef enum{
 @optional
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view;
 @end
+
