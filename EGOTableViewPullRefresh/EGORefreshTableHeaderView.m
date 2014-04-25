@@ -126,25 +126,27 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 }
 
 - (void)relayout {
-    float layerOffsetX = self.center.x - 140;
+    NSAssert(self.superview != nil, @"need to have a superview!!");
+    float layerOffsetX = self.superview.center.x - 140;
+    float width = self.superview.bounds.size.width;
     if (!self.spinnerLayer) {
         _arrowImage.frame = CGRectMake(layerOffsetX, self.frame.size.height - 65.0f, 30.0f, 55.0f);
         _activityView.frame = CGRectMake(layerOffsetX, self.frame.size.height - 38.0f, 20.0f, 20.0f);
     }
     else {
         if (!_lastUpdatedLabel) {
-            layerOffsetX = self.center.x - 80;
+            layerOffsetX = self.superview.center.x - 80;
         }
         self.spinnerLayer.frame = CGRectMake(layerOffsetX, self.frame.size.height - _spinnerLayer.bounds.size.height - 15,
                                              _spinnerLayer.bounds.size.width, _spinnerLayer.bounds.size.height);
     }
     
     if (_lastUpdatedLabel) {
-        _lastUpdatedLabel.frame = CGRectMake(0.0f, self.frame.size.height - 30.0f, self.frame.size.width, 20.0f);
-        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, self.frame.size.width, 20.0f);
+        _lastUpdatedLabel.frame = CGRectMake(0.0f, self.frame.size.height - 30.0f, width, 20.0f);
+        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, width, 20.0f);
     }
     else {
-        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, self.frame.size.width, 35.0f);
+        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, width, 35.0f);
     }
 }
 
@@ -349,4 +351,3 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 
 @end
-
