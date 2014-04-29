@@ -40,6 +40,9 @@ table:nil]
 static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 @interface EGORefreshTableHeaderView ()
+{
+    BOOL centerAll_;
+}
 @property (nonatomic, strong) CALayer<EGOSpinnerLayerDelegate> *spinnerLayer;
 @property (nonatomic, assign) CGFloat lastContentOffsetY;
 
@@ -51,17 +54,24 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 - (instancetype)initWithFrame:(CGRect)frame
                  spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer
          showLastUpdatedLabel:(BOOL)showLastUpdatedLabel
+                    textColor:(UIColor *)textColor
+                    centerAll:(BOOL)centerAll
 {
     if (self = [super initWithFrame:frame]) {
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		self.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
-        
+        centerAll_ = centerAll;
         UILabel *label = nil;
         if (showLastUpdatedLabel) {
             label = [[UILabel alloc] initWithFrame:CGRectZero];
             label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             label.font = [UIFont systemFontOfSize:12.0f];
-            label.textColor = TEXT_COLOR;
+            if (textColor) {
+                label.textColor = textColor;
+            }
+            else {
+                label.textColor = TEXT_COLOR;
+            }
             label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
             label.shadowOffset = CGSizeMake(0.0f, 1.0f);
             label.backgroundColor = [UIColor clearColor];
@@ -73,7 +83,12 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
         label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         label.font = [UIFont boldSystemFontOfSize:13.0f];
-        label.textColor = TEXT_COLOR;
+        if (textColor) {
+            label.textColor = textColor;
+        }
+        else {
+            label.textColor = TEXT_COLOR;
+        }
         label.shadowColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
         label.shadowOffset = CGSizeMake(0.0f, 1.0f);
         label.backgroundColor = [UIColor clearColor];
@@ -108,6 +123,14 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
     }
     
     return self;
+    
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+                 spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer
+         showLastUpdatedLabel:(BOOL)showLastUpdatedLabel
+{
+    return [self initWithFrame:frame spinnerLayer:spinnerLayer showLastUpdatedLabel:showLastUpdatedLabel textColor:nil centerAll:NO];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer {
@@ -127,7 +150,12 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 - (void)relayout {
     NSAssert(self.superview != nil, @"need to have a superview!!");
-    float layerOffsetX = self.superview.center.x - 140;
+    static float kFixCenter = 0;
+    if (centerAll_) {
+        kFixCenter = 21;
+    }
+    
+    float layerOffsetX = self.superview.center.x - 140 + kFixCenter;
     float width = self.superview.bounds.size.width;
     if (!self.spinnerLayer) {
         _arrowImage.frame = CGRectMake(layerOffsetX, self.frame.size.height - 65.0f, 30.0f, 55.0f);
@@ -135,18 +163,18 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
     }
     else {
         if (!_lastUpdatedLabel) {
-            layerOffsetX = self.superview.center.x - 80;
+            layerOffsetX = self.superview.center.x - (_spinnerLayer.bounds.size.width + 50) + kFixCenter;
         }
         self.spinnerLayer.frame = CGRectMake(layerOffsetX, self.frame.size.height - _spinnerLayer.bounds.size.height - 15,
                                              _spinnerLayer.bounds.size.width, _spinnerLayer.bounds.size.height);
     }
     
     if (_lastUpdatedLabel) {
-        _lastUpdatedLabel.frame = CGRectMake(0.0f, self.frame.size.height - 30.0f, width, 20.0f);
-        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, width, 20.0f);
+        _lastUpdatedLabel.frame = CGRectMake(kFixCenter, self.frame.size.height - 30.0f, width, 20.0f);
+        _statusLabel.frame = CGRectMake(kFixCenter, self.frame.size.height - 48.0f, width, 20.0f);
     }
     else {
-        _statusLabel.frame = CGRectMake(0.0f, self.frame.size.height - 48.0f, width, 35.0f);
+        _statusLabel.frame = CGRectMake(kFixCenter, self.frame.size.height - 48.0f, width, 35.0f);
     }
 }
 
@@ -351,3 +379,4 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 
 @end
+

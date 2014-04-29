@@ -52,8 +52,16 @@ typedef enum{
 
 @property (nonatomic, weak) id <EGORefreshTableHeaderDelegate> delegate;
 
-- (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer showLastUpdatedLabel:(BOOL)showLastUpdatedLabel;
-- (instancetype)initWithFrame:(CGRect)frame spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer;
+- (instancetype)initWithFrame:(CGRect)frame
+                 spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer
+         showLastUpdatedLabel:(BOOL)showLastUpdatedLabel
+                    textColor:(UIColor *)textColor
+                    centerAll:(BOOL)centerAll;
+- (instancetype)initWithFrame:(CGRect)frame
+                 spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer
+         showLastUpdatedLabel:(BOOL)showLastUpdatedLabel;
+- (instancetype)initWithFrame:(CGRect)frame
+                 spinnerLayer:(CALayer<EGOSpinnerLayerDelegate> *)spinnerLayer;
 - (void)refreshLastUpdatedDate;
 - (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView;
 - (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView;
@@ -66,3 +74,4 @@ typedef enum{
 @optional
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view;
 @end
+

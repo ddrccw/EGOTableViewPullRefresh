@@ -17,7 +17,7 @@
 		3A3D90A8111881DE002B6585 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D90A7111881DE002B6585 /* RootViewController.m */; };
 		3A3D910311188495002B6585 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3D910211188495002B6585 /* main.m */; };
 		CE013A3818D2FC2D00929705 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE013A3618D2FC2D00929705 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		CE013A3D18D300C000929705 /* CCCircleSpinLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE013A3C18D300C000929705 /* CCCircleSpinLayer.m */; };
+		CE7ED116190F970E0086D6DF /* CCCircleSpinLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7ED115190F970E0086D6DF /* CCCircleSpinLayer.m */; };
 		CEBB8C7C18D96B2C000C50F9 /* EGOTableViewPullRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CEBB8C7B18D96B2C000C50F9 /* EGOTableViewPullRefresh.bundle */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +38,8 @@
 		8D1107310486CEB800E47090 /* TableViewPull-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "TableViewPull-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		CE013A3518D2FC2D00929705 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		CE013A3618D2FC2D00929705 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		CE013A3B18D300C000929705 /* CCCircleSpinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCircleSpinLayer.h; sourceTree = "<group>"; };
-		CE013A3C18D300C000929705 /* CCCircleSpinLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCircleSpinLayer.m; sourceTree = "<group>"; };
+		CE7ED114190F970E0086D6DF /* CCCircleSpinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCircleSpinLayer.h; sourceTree = "<group>"; };
+		CE7ED115190F970E0086D6DF /* CCCircleSpinLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCCircleSpinLayer.m; sourceTree = "<group>"; };
 		CEBB8C7B18D96B2C000C50F9 /* EGOTableViewPullRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EGOTableViewPullRefresh.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,8 +159,8 @@
 		CE013A3A18D300C000929705 /* CCCircleSpinLayer */ = {
 			isa = PBXGroup;
 			children = (
-				CE013A3B18D300C000929705 /* CCCircleSpinLayer.h */,
-				CE013A3C18D300C000929705 /* CCCircleSpinLayer.m */,
+				CE7ED114190F970E0086D6DF /* CCCircleSpinLayer.h */,
+				CE7ED115190F970E0086D6DF /* CCCircleSpinLayer.m */,
 			);
 			name = CCCircleSpinLayer;
 			path = ../../CCCircleSpinLayer/CCCircleSpinLayer;
@@ -232,7 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE013A3D18D300C000929705 /* CCCircleSpinLayer.m in Sources */,
+				CE7ED116190F970E0086D6DF /* CCCircleSpinLayer.m in Sources */,
 				CE013A3818D2FC2D00929705 /* EGORefreshTableHeaderView.m in Sources */,
 				3A3D908E11187FE7002B6585 /* TableViewPullAppDelegate.m in Sources */,
 				3A3D90A8111881DE002B6585 /* RootViewController.m in Sources */,
