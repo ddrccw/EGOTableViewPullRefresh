@@ -151,8 +151,36 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 - (void)relayout {
     NSAssert(self.superview != nil, @"need to have a superview!!");
     static float kFixCenter = 0;
+    static float kFixEn = 0;
+    static float kFixMargin = 50;
     if (centerAll_) {
         kFixCenter = 21;
+        NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        if (![language hasPrefix:@"zh"]) {
+            kFixEn = 20;
+            if (_lastUpdatedLabel) {
+                kFixMargin += 16;
+            }
+        }
+        else {
+            if (_lastUpdatedLabel) {
+                kFixMargin += 12;
+            }
+        }
+    }
+    else {
+        NSString * language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        if (![language hasPrefix:@"zh"]) {
+            kFixEn = 25;
+            if (_lastUpdatedLabel) {
+                kFixMargin += 16;
+            }
+        }
+        else {
+            if (_lastUpdatedLabel) {
+                kFixMargin += 12;
+            }
+        }
     }
     
     float layerOffsetX = self.superview.center.x - 140 + kFixCenter;
@@ -162,9 +190,7 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
         _activityView.frame = CGRectMake(layerOffsetX, self.frame.size.height - 38.0f, 20.0f, 20.0f);
     }
     else {
-        if (!_lastUpdatedLabel) {
-            layerOffsetX = self.superview.center.x - (_spinnerLayer.bounds.size.width + 50) + kFixCenter;
-        }
+        layerOffsetX = self.superview.center.x - (_spinnerLayer.bounds.size.width + kFixMargin) + kFixCenter - kFixEn;
         self.spinnerLayer.frame = CGRectMake(layerOffsetX, self.frame.size.height - _spinnerLayer.bounds.size.height - 15,
                                              _spinnerLayer.bounds.size.width, _spinnerLayer.bounds.size.height);
     }
@@ -379,4 +405,3 @@ static const float kOffsetYWhenSpinnerStartingShowing = 30;
 
 
 @end
-
